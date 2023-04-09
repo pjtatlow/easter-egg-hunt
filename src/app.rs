@@ -1,4 +1,3 @@
-use leptos::html::Div;
 use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
@@ -47,7 +46,7 @@ fn HomePage(cx: Scope) -> impl IntoView {
     };
 
     view! { cx,
-        <div class="container" on:click=on_click>
+        <div class="container">
             <div class:pyro={move || count() >= 5}>
                 <div class="before"></div>
                 <div class="after"></div>
@@ -87,7 +86,13 @@ fn HomePage(cx: Scope) -> impl IntoView {
                     <div class="flower"></div>
                 </div>
                 <div class="grass"></div>
-                <p class="text">"- tap on the egg -"</p>
+                <button
+                    class="open-button"
+                    class:hidden={move || count() >= 5}
+                    on:click=on_click
+
+                >"open the egg"</button>
+
             </div>
         </div>
     }
