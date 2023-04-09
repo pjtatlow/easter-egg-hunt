@@ -1,0 +1,4 @@
+{
+"rust-analyzer.cargo.features": [],
+"rust-analyzer.check.overrideCommand": ["cargo", "+nightly",  "check", "--workspace",  "--message-format=json", "--features", "ssr"]
+}
