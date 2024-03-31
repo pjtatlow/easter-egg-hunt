@@ -30,10 +30,19 @@ pub fn App() -> impl IntoView {
 #[component]
 fn HomePage() -> impl IntoView {
     let params = use_params_map();
-    let data = create_resource(
-        move || params.with(|p| p.get("id").cloned().unwrap_or_default()),
-        move |id| get_value(id),
-    );
+    let egg = params.with(|p| p.get("id").cloned().unwrap_or_default());
+    let value = match egg.as_str() {
+        "egg1" => 5,
+        "egg2" => 20,
+        "egg3" => 5,
+        "egg4" => 10,
+        "egg5" => 5,
+        "egg6" => 20,
+        "egg7" => 5,
+        "egg8" => 50,
+        "egg9" => 10,
+        _ => 0,
+    };
 
     // let loading = data.loading();
     // Creates a reactive value to update the button
@@ -57,12 +66,7 @@ fn HomePage() -> impl IntoView {
                 class:step-five={move || count.get() >= 5}
             >
                 <div class="money">
-                    <Suspense fallback=move || view! {  <p>"Loading (Suspense Fallback)..."</p> }>
-                    {move || {
-                        data.get().map(|value| view! {  "$"{value} })
-                      }
-                    }
-                    </Suspense>
+                     "$"{value}
 
                 </div>
                 <div class="chick">
@@ -92,20 +96,5 @@ fn HomePage() -> impl IntoView {
 
             </div>
         </div>
-    }
-}
-
-async fn get_value(id: String) -> u64 {
-    match id.as_str() {
-        "egg1" => 5,
-        "egg2" => 20,
-        "egg3" => 5,
-        "egg4" => 10,
-        "egg5" => 5,
-        "egg6" => 20,
-        "egg7" => 5,
-        "egg8" => 50,
-        "egg9" => 10,
-        _ => 0,
     }
 }
