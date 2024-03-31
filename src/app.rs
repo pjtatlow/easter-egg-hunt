@@ -41,6 +41,8 @@ fn HomePage() -> impl IntoView {
         "egg7" => 5,
         "egg8" => 50,
         "egg9" => 10,
+        "egg10" => 10,
+        "egg11" => 20,
         _ => 0,
     };
 
